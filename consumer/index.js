@@ -1,24 +1,31 @@
 var amqp = require("amqplib/callback_api");
+require("dotenv").config();
+const { CreateFootballTwitterMessage } = require("./twitter.message");
 
-amqp.connect('amqp://localhost', function(error0, connection) {
+amqp.connect(process.env.RABBIT_MQ_URL, function (error0, connection) {
   if (error0) {
     throw error0;
   }
-  connection.createChannel(function(error1, channel) {
+  connection.createChannel(function (error1, channel) {
     if (error1) {
       throw error1;
     }
-    var queue = 'hello-test';
+    var queue = "football-events";
 
     channel.assertQueue(queue, {
-      durable: false
+      durable: false,
     });
 
     console.log("[*] waiting for messages in %s", queue);
-    channel.consume(queue, (msg)=>{
-        console.log("receive %s", msg.content.toString())
-    }, {
-        noAck: true
-    })
+    channel.consume(
+      queue,
+      (msg) => {
+        console.log("receive %s", msg.content.toString());
+        CreateFootballTwitterMessage(JSON.parse(msg.content.toString()));
+      },
+      {
+        noAck: true,
+      }
+    );
   });
 });
