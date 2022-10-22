@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/estelasouza/topicos-6/issues"
   },
-  "homepage": "https://github.com/estelasouza/topicos-6#readme"
+  "homepage": "https://github.com/estelasouza/topicos-6#readme",
+  "dependencies": {
+    "twitter-api-v2": "^1.12.8"
+  }
 }
