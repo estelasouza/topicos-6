@@ -13,8 +13,8 @@ const client = new Twitter({
 
 async function test(){
     
-    const { data } = await client.get('tweets', { ids: '1228393702244134912' });
-    console.log(data);
+    const { data } = await client.post('tweets',{ text: "hello"})
+      console.log(data)
 }
 
 test()
