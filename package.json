@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/estelasouza/topicos-6#readme",
   "dependencies": {
+    "amqplib": "^0.10.3",
     "twitter-api-v2": "^1.12.8"
   }
 }
