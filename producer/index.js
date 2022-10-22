@@ -78,7 +78,7 @@ async function filterGamesByNewGols(events) {
                     console.error(`Could not get the team logos: ${event.home_team_key} and ${event.away_team_key}`);
                 }
 
-                let goalPlayerName = goalScorer.home_scorer || goalScorer.away_scorer;
+                let goalPlayerName = goalScorer.home_scorer ? goalScorer.home_scorer : goalScorer.away_scorer;
                 let teamGoal = goalPlayerName ? (goalScorer.home_scorer ? event.event_home_team : event.event_away_team) : "";
                 let goalEvent = {
                     "leagueName": event.league_name,
@@ -92,6 +92,7 @@ async function filterGamesByNewGols(events) {
                     "homeTeamGoals": homeScore,
                     "awayTeamGols": awayScore,
                     "teamGoal": teamGoal,
+                    "goalTime": goalScorer.time,
                     "goalPlayerName": goalPlayerName
                 }
                 console.log("Sending current result to the queue");
