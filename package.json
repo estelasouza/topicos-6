@@ -19,6 +19,7 @@
   "dependencies": {
     "amqplib": "^0.10.3",
     "dotenv": "^16.0.3",
+    "emoji-flags": "^1.3.0",
     "twitter-api-v2": "^1.12.8",
     "twitter-v2": "^1.1.0"
   }
