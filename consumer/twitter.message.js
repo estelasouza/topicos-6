@@ -60,7 +60,11 @@ const CreateFootballTwitterMessage = ({
 };
 
 async function CreateTweet(text) {
-  await client.v1.tweet(text);
+  try {
+    await client.v1.tweet(text);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 module.exports = {
